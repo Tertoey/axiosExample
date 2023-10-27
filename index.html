@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node.js Input Example</title>
+</head>
+<body>
+  <h1>Node.js Input Example</h1>
+  <form action="/submit" method="post">
+    <label for="userInput">Enter your input:</label>
+    <input type="text" id="userInput" name="userInput" required>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="response"></div>
+
+<!-- ... -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // Submit the form data using Axios
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const userInput = document.getElementById('userInput').value;
+
+    try {
+      const response = await axios.post('/submit', { userInput });
+      document.getElementById('response').textContent = response.data;
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+<!-- ... -->
+
+</body>
+</html>
